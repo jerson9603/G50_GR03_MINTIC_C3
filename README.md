@@ -1,0 +1,1 @@
+# G50_GR03_MINTIC_C3
