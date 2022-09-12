@@ -9,5 +9,6 @@ public class ListadoController {
     public String abrirLogin() {
         return "login"; // this is linked to the name of the html file in
                         // resources/templates/listado.html
+                        //,
     }
 }
