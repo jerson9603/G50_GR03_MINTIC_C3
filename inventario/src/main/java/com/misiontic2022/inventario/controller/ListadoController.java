@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping; // automatically 
 public class ListadoController {
     @RequestMapping("/") // path to renderize. "/":root of my project
     public String abrirLogin() {
-        return "login"; // this is linked to the name of the html file in
+        return "disponibilidad"; // this is linked to the name of the html file in
                         // resources/templates/listado.html
     }
 }

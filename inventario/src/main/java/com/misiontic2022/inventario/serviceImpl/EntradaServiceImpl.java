@@ -13,4 +13,24 @@ public class EntradaServiceImpl implements EntradaService {
     public List<Entrada> findAll() {
         return this.repositorio.findAll();
     }
+
+    public void save(Entrada entrada) {
+        this.repositorio.save(entrada);
+    }
+
+    public void delete(Entrada entrada) {
+        this.repositorio.delete(entrada);
+    }
+
+    public Entrada getById(Long id) {
+        return this.repositorio.getReferenceById(id);
+    }
+
+    //public void update(Entrada entrada) {
+    //    this.repositorio.update(entrada);
+    //}
 }
+
+
+
+
