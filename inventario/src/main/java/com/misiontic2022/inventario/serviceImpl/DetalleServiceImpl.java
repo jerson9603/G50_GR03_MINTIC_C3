@@ -18,6 +18,10 @@ public class DetalleServiceImpl implements DetalleService {
         this.repositorio.save(detalle);
     }
 
+    public void delete(Long id) {
+        this.repositorio.deleteById(id);
+    }
+
     public void delete(Detalle detalle) {
         this.repositorio.delete(detalle);
     }
@@ -26,9 +30,9 @@ public class DetalleServiceImpl implements DetalleService {
         return this.repositorio.getReferenceById(id);
     }
 
-    //public void update(Detalle entrada) {
-    //    this.repositorio.update(entrada);
-    //}
+    public void update(Detalle entrada) {
+        this.repositorio.save(entrada);
+    }
 }
 
 

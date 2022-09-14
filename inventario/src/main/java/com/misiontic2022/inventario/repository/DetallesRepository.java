@@ -6,6 +6,5 @@ import com.misiontic2022.inventario.domain.Detalle;
 
 public interface DetallesRepository extends JpaRepository<Detalle, Long> {
 
-    // void update(Detalle entrada);
 
 }

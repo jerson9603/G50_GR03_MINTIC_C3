@@ -9,10 +9,12 @@ public interface EntradaService {
 
     public void save(Entrada entrada);
 
+    public void delete(Long id);
+
     public void delete(Entrada entrada);
 
     public Entrada getById(Long id);
 
-    // public void update(Entrada cupon);
+    public void update(Entrada entrada);
 
 }

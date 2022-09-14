@@ -18,6 +18,10 @@ public class EntradaServiceImpl implements EntradaService {
         this.repositorio.save(entrada);
     }
 
+    public void delete(Long id) {
+        this.repositorio.deleteById(id);
+    }
+
     public void delete(Entrada entrada) {
         this.repositorio.delete(entrada);
     }
@@ -26,9 +30,9 @@ public class EntradaServiceImpl implements EntradaService {
         return this.repositorio.getReferenceById(id);
     }
 
-    //public void update(Entrada entrada) {
-    //    this.repositorio.update(entrada);
-    //}
+    public void update(Entrada entrada) {
+        this.repositorio.save(entrada);
+    }
 }
 
 

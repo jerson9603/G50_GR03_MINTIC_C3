@@ -9,10 +9,12 @@ public interface DetalleService {
 
     public void save(Detalle entrada);
 
+    public void delete(Long id);
+
     public void delete(Detalle entrada);
 
     public Detalle getById(Long id);
 
-    // public void update(Detalle cupon);
+    public void update(Detalle cupon);
 
 }
