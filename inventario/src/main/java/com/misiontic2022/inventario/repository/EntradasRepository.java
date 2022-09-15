@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.misiontic2022.inventario.domain.Entrada;
 
-public interface EntradasRepository extends JpaRepository<Entrada, Integer> {
+public interface EntradasRepository extends JpaRepository<Entrada, Long> {
+
 
 }
