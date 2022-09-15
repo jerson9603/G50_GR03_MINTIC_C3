@@ -13,16 +13,16 @@ public class UsuarioServiceImpl {
         return this.repository.findAll();
     }
 
-    public void save(Usuario entrada) {
-        this.repository.save(entrada);
+    public void save(Usuario usuario) {
+        this.repository.save(usuario);
     }
 
     public void delete(Long id) {
         this.repository.deleteById(id);
     }
 
-    public void delete(Usuario salida) {
-        this.repository.delete(salida);
+    public void delete(Usuario usuario) {
+        this.repository.delete(usuario);
     }
     
     public Usuario getById(Long id) {
@@ -30,7 +30,7 @@ public class UsuarioServiceImpl {
         //return this.repository.findById(id).get();
     }
 
-    public void update(Usuario salida) {
-        this.repository.save(salida);
+    public void update(Usuario usuario) {
+        this.repository.save(usuario);
     }
 }

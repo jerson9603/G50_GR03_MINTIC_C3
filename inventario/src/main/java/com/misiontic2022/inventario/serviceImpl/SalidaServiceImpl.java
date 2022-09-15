@@ -13,8 +13,8 @@ public class SalidaServiceImpl implements SalidaService{
         return this.repository.findAll();
     }
 
-    public void save(Salida entrada) {
-        this.repository.save(entrada);
+    public void save(Salida salida) {
+        this.repository.save(salida);
     }
 
     public void delete(Long id) {

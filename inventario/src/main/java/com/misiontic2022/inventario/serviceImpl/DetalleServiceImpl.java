@@ -30,8 +30,8 @@ public class DetalleServiceImpl implements DetalleService {
         return this.repositorio.getReferenceById(id);
     }
 
-    public void update(Detalle entrada) {
-        this.repositorio.save(entrada);
+    public void update(Detalle detalle) {
+        this.repositorio.save(detalle);
     }
 }
 

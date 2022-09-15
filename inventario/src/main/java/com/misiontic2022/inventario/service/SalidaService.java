@@ -7,7 +7,7 @@ public interface SalidaService {
 
     public List<Salida> findAll();
 
-    public void save(Salida entrada);
+    public void save(Salida salida);
 
     public void delete(Long id);
 

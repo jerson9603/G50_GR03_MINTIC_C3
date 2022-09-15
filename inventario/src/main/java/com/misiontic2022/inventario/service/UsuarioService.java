@@ -7,13 +7,13 @@ public interface UsuarioService {
 
     public List<Usuario> findAll();
 
-    public void save(Usuario entrada);
+    public void save(Usuario usuario);
 
     public void delete(Long id);
 
-    public void delete(Usuario salida);
+    public void delete(Usuario usuario);
 
     public Usuario getById(Long id);
 
-    public void update(Usuario salida);
+    public void update(Usuario usuario);
 }

@@ -7,14 +7,14 @@ import com.misiontic2022.inventario.domain.Detalle;
 public interface DetalleService {
     public List<Detalle> findAll();
 
-    public void save(Detalle entrada);
+    public void save(Detalle detalle);
 
     public void delete(Long id);
 
-    public void delete(Detalle entrada);
+    public void delete(Detalle detalle);
 
     public Detalle getById(Long id);
 
-    public void update(Detalle cupon);
+    public void update(Detalle detalle);
 
 }
