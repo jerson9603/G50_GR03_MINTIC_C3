@@ -2,12 +2,17 @@ package com.misiontic2022.inventario.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.misiontic2022.inventario.domain.Entrada;
 import com.misiontic2022.inventario.repository.EntradasRepository;
 import com.misiontic2022.inventario.service.EntradaService;
 
+@Service
 public class EntradaServiceImpl implements EntradaService {
     // public List<Entrada> findAll();
+    @Autowired
     private EntradasRepository repositorio;
 
     public List<Entrada> findAll() {

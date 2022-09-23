@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<html lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
   <meta charset="UTF-8">
@@ -53,7 +56,7 @@
         <thead>
           <tr class="table-dark">
             <!-- P/D: Pedido o Devolucion}//-->  
-            <th scope="col">Ped/Dev</th>
+            <!--<th scope="col">Ped/Dev</th>-->
             <th scope="col">Fecha</th>
             <th scope="col">Nombre Proveedor/Cliente</th>
             <th scope="col">id</th>
@@ -63,82 +66,21 @@
             <th scope="col">Formula</th>
             <th scope="col">P.U. Compra($)</th>
             <th scope="col">P.U. Venta($)</th>
-            <!-- Subtotales no son editables, son automaticamente calculados }//--> 
-            <th scope="col">Subtotal compra($)</th>
-            <th scope="col">Subtotal venta($)</th>
-            <th scope="col">Opciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Pedido</td>
-            <td>04-09-2022</td>
-            <td>Coopidrogas</td>
-            <td>GHB542</td>
-            <td>5</td>
-            <td>Dolex Forte Capsula Adulto 300 mg</td>
+          <tr th:each="entrada: ${ENTRADAS}">
+            <!--<td>Pedido</td>-->
+            <td th:text="${entrada.fechaEntrada}"></td>
+            <td th:text="${entrada.proveedor}"></td>
+            <td th:text="${entrada.indexId}"></td>
+            <td th:text="${entrada.detalleCompleto.cantidad}"></td>
+            <td th:text="${entrada.detalleCompleto.refProducto}"></td>
             <td>12-01-2023</td>
             <td>SI</td>
             <td>400</td>
             <td>600</td>
-            <td>2000</td>
-            <td>3000</td>
-            <!-- Si se edita, actualizar automaticamente }//--> 
-            <!-- Si se borra, preguntar si se esta seguro de ser borrado permanentemente}//--> 
-            <td>Editar | Borrar</td>
           </tr>
-          <tr>
-            <td>Pedido</td>
-            <td>04-09-2022</td>
-            <td>Coopidrogas</td>
-            <td>HJN542</td>
-            <td>5</td>
-            <td>Advil gripa 50 mg</td>
-            <td>12-01-2023</td>
-            <td>SI</td>
-            <td>400</td>
-            <td>600</td>
-            <td>2000</td>
-            <td>3000</td>
-            <!-- Si se edita, actualizar automaticamente }//--> 
-            <!-- Si se borra, preguntar si se esta seguro de ser borrado permanentemente}//--> 
-            <td>Editar | Borrar</td>
-          </tr>
-          <tr>
-            <td>Devol.</td>
-            <td>04-09-2022</td>
-            <td></td>
-            <td>OPE854</td>
-            <td>5</td>
-            <td>Acetaminofen capsula 100mg</td>
-            <td>12-01-2023</td>
-            <td>SI</td>
-            <td>400</td>
-            <td>600</td>
-            <td>2000</td>
-            <td>3000</td>
-            <!-- Si se edita, actualizar automaticamente }//--> 
-            <!-- Si se borra, preguntar si se esta seguro de ser borrado permanentemente}//--> 
-            <td>Editar | Borrar</td>
-          </tr>
-          <tr>
-            <td>Devol.</td>
-            <td>04-09-2022</td>
-            <td></td>
-            <td>IJK854</td>
-            <td>5</td>
-            <td>Apronax 20mg</td>
-            <td>12-01-2023</td>
-            <td>SI</td>
-            <td>400</td>
-            <td>600</td>
-            <td>2000</td>
-            <td>3000</td>
-            <!-- Si se edita, actualizar automaticamente }//--> 
-            <!-- Si se borra, preguntar si se esta seguro de ser borrado permanentemente}//--> 
-            <td>Editar | Borrar</td>
-          </tr>
-          
         </tbody>
       </table>
     </div>

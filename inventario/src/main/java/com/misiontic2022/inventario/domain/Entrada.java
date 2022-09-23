@@ -68,6 +68,10 @@ public class Entrada implements Serializable {
     // @NotNull
     @Column(name = "ped_devcl")
     private boolean pedDevcl;
+    @Column(name = "ref_producto")
+    private Integer refProducto;
+
+    private Detalle detalleCompleto;
 
     public Entrada() {
     }
@@ -133,6 +137,22 @@ public class Entrada implements Serializable {
     public void setPedDevcl(boolean pedDevcl) {
         this.pedDevcl = pedDevcl;
     }
+
+    public Detalle getDetalleCompleto() {
+        return detalleCompleto;
+    }
+
+    public void setDetalleCompleto(Detalle detalle) {
+        this.detalleCompleto = detalle;
+    }
+
+    public Integer getRefProducto() {
+        return this.refProducto;
+    }
+    
+    public void setRefProducto(Integer refProducto) {
+        this.refProducto = refProducto;
+    }    
 
     @Override
     public int hashCode() {
