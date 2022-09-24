@@ -18,24 +18,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page"
-                            href="./disponibilidad.html">Disponibilidad</a>
-                    </li>
-                    <li class="nav-item dropdown" id="Mydropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Entradas</a>
-                        <ul class="dropdown-menu">
-                            <li> <a class="dropdown-item" href="./nuevaEntrada.html"> Nueva entrada</a></li>
-                            <li> <a class="dropdown-item" href="./entradas.html"> Ver entradas</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown" id="Mydropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Salidas</a>
-                        <ul class="dropdown-menu">
-                            <li> <a class="dropdown-item" href="./nuevaSalida.html"> Nueva salida</a></li>
-                            <li> <a class="dropdown-item" href="./salidas.html"> Ver salidas</a></li>
-                        </ul>
-                    </li>
                 </ul>
                 
                 <a class="btn btn-primary" href="./login.html" role="button">Logout</a>
@@ -53,41 +35,45 @@
         <thead>
           <tr class="table-dark">
             <!-- P/D: Pedido o Devolucion}//-->  
-            <th scope="col">Venta/Dev</th>
+            <th scope="col">id</th>
             <th scope="col">Fecha</th>
             <th scope="col">Nombre Proveedor/Cliente</th>
-            <th scope="col">id</th>
-            <th scope="col">Unidades</th>
-            <th scope="col">Nombre Producto</th>
-            <th scope="col">Vencimiento</th>
-            <th scope="col">Formula</th>
-            <th scope="col">P.U. Compra($)</th>
-            <th scope="col">P.U. Venta($)</th>
-            <!-- Subtotales no son editables, son automaticamente calculados }//--> 
+            <th scope="col">Ref_producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Vent_devpro</th>
+            <th scope="col">cliente</th>
+            <!--<th scope="col">Formula</th>
+            //<th scope="col">P.U. Compra($)</th>
+            //<th scope="col">P.U. Venta($)</th>
+             Subtotales no son editables, son automaticamente calculados }
             <th scope="col">Subtotal compra($)</th>
             <th scope="col">Subtotal venta($)</th>
-            <th scope="col">Opciones</th>
+            <th scope="col">Opciones</th>//--> 
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Venta</td>
+           <!-- <td>Venta</td>//--> 
+           <td>1</td>
             <td>04-09-2022</td>
             <td></td>
             <td>GHB542</td>
             <td>5</td>
-            <td>Dolex Forte Capsula Adulto 300 mg</td>
+            <td></td>
+            <td></td>
+
+            <!-- <td>Dolex Forte Capsula Adulto 300 mg</td>
             <td>12-01-2023</td>
             <td>SI</td>
             <td>400</td>
             <td>600</td>
             <td>2000</td>
-            <td>3000</td>
+            <td>3000</td>//--> 
             <!-- Si se edita, actualizar automaticamente }//--> 
             <!-- Si se borra, preguntar si se esta seguro de ser borrado permanentemente}//--> 
-            <td>Editar | Borrar</td>
+            <!-- <td>Editar | Borrar</td>//-->
           </tr>
-          <tr>
+         <!-- <tr>
             <td>Venta</td>
             <td>04-09-2022</td>
             <td>Pepa Pig</td>
@@ -99,10 +85,10 @@
             <td>400</td>
             <td>600</td>
             <td>2000</td>
-            <td>3000</td>
+            <td>3000</td>//-->
             <!-- Si se edita, actualizar automaticamente }//--> 
             <!-- Si se borra, preguntar si se esta seguro de ser borrado permanentemente}//--> 
-            <td>Editar | Borrar</td>
+          <!--  <td>Editar | Borrar</td>
           </tr>
           <tr>
             <td>Devol.</td>
@@ -116,10 +102,10 @@
             <td>400</td>
             <td>600</td>
             <td>2000</td>
-            <td>3000</td>
+            <td>3000</td>//--> 
             <!-- Si se edita, actualizar automaticamente }//--> 
             <!-- Si se borra, preguntar si se esta seguro de ser borrado permanentemente}//--> 
-            <td>Editar | Borrar</td>
+            <!--<td>Editar | Borrar</td>
           </tr>
           <tr>
             <td>Devol.</td>
@@ -133,11 +119,11 @@
             <td>400</td>
             <td>600</td>
             <td>2000</td>
-            <td>3000</td>
+            <td>3000</td>//-->
             <!-- Si se edita, actualizar automaticamente }//--> 
             <!-- Si se borra, preguntar si se esta seguro de ser borrado permanentemente}//--> 
-            <td>Editar | Borrar</td>
-          </tr>
+           <!-- <td>Editar | Borrar</td>
+          </tr>//--> 
           
         </tbody>
       </table>
