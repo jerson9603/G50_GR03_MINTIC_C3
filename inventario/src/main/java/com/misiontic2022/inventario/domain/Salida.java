@@ -79,6 +79,8 @@ public class Salida implements Serializable {
     @Column(name = "cliente")
     private String cliente;
 
+    private Detalle detalleCompleto;
+
     public Salida() {
     }
 
@@ -113,12 +115,12 @@ public class Salida implements Serializable {
         this.fechaSal = fechaSal;
     }
 
-    public String getDetalle() {
-        return detalle;
+    public Detalle getDetalleCompleto() {
+        return detalleCompleto;
     }
 
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
+    public void setDetalle(Detalle detalle) {
+        this.detalleCompleto = detalle;
     }
 
     public String getProveedor() {
@@ -130,10 +132,10 @@ public class Salida implements Serializable {
     }
 
     public int getRefProducto() {
-        return refProducto;
+        return this.refProducto;
     }
 
-    public void setRefProducto(int refProducto) {
+    public void setRefProducto(Integer refProducto) {
         this.refProducto = refProducto;
     }
 

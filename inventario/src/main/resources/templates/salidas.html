@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<html lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
   <meta charset="UTF-8">
@@ -10,7 +13,7 @@
   <header>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">INVENTARIO DE DROGUERIA</a>
+          <a class="navbar-brand" href="#">INVENTARIO DE DROGUERIA</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -18,10 +21,39 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <!-- <a class="nav-link active" aria-current="page"
+                        href="./disponibilidad.html">Disponibilidad</a>//-->
+                    </li>
+                    <li class="nav-item dropdown" id="Mydropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Entradas</a>
+                        <ul class="dropdown-menu">
+                          <!-- <li> <a class="dropdown-item" href="./nuevaEntrada.html"> Nueva entrada</a></li>//-->
+                            <li> <a class="dropdown-item" href="./entradas.html"> Ver entradas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown" id="Mydropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Salidas</a>
+                        <ul class="dropdown-menu">
+                          <!-- <li> <a class="dropdown-item" href="./nuevaSalida.html"> Nueva salida</a></li>//-->
+                            <li> <a class="dropdown-item" href="./salidas.html"> Ver salidas</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 
                 <a class="btn btn-primary" href="./login.html" role="button">Logout</a>
             </div>
+            <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                </ul>
+                
+                <a class="btn btn-primary" href="./login.html" role="button">Logout</a>
+            </div>//-->
         </div>
     </nav>
 </header>
@@ -29,7 +61,7 @@
     <div class="container-fluid">
       <!-- Realmente es un registro de detalles de salida}//-->  
       <h1 style="color: #2f6ed9;">Registro de salidas</h1>
-      <h5> Campos de texto por columna para busqueda por ser agregados</h5>
+      <!--<h5> Campos de texto por columna para busqueda por ser agregados</h5>//-->
       
       <table class="table table-striped table-bordered border-dark">
         <thead>
@@ -43,24 +75,25 @@
             <th scope="col">Vent_devpro</th>
             <th scope="col">cliente</th>
             <!--<th scope="col">Formula</th>
-            //<th scope="col">P.U. Compra($)</th>
-            //<th scope="col">P.U. Venta($)</th>
-             Subtotales no son editables, son automaticamente calculados }
-            <th scope="col">Subtotal compra($)</th>
-            <th scope="col">Subtotal venta($)</th>
-            <th scope="col">Opciones</th>//--> 
+            <th scope="col">P.U. Compra($)</th>
+            <th scope="col">P.U. Venta($)</th>
+            Subtotales no son editables, son automaticamente calculados }//--> 
+           <!-- <th scope="col">Subtotal compra($)</th>
+            <th scope="col">Subtotal venta($)</th>//--> 
+           <!-- <th scope="col">Opciones</th>//--> 
           </tr>
         </thead>
         <tbody>
-          <tr>
-           <!-- <td>Venta</td>//--> 
-           <td>1</td>
-            <td>04-09-2022</td>
-            <td></td>
-            <td>GHB542</td>
-            <td>5</td>
-            <td></td>
-            <td></td>
+          <tr th:each="salida: ${SALIDAS}">
+           <!-- <td>Venta</td>//-->   
+            <td th:text="${salida.indexId}"></td>
+            <td th:text="${salida.fechaSal}"></td>
+            <td th:text="${salida.proveedor}"></td>
+            <td th:text="${salida.detalleCompleto.refProducto}"></td>
+            <td th:text="${salida.detalleCompleto.cantidad}"></td>
+            <td th:text="${salida.ventDevpro}"></td>
+            <td th:text="${salida.cliente}"></td>
+          
 
             <!-- <td>Dolex Forte Capsula Adulto 300 mg</td>
             <td>12-01-2023</td>
