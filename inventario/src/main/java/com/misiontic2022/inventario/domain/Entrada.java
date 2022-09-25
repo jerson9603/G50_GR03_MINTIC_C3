@@ -33,9 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
         @NamedQuery(name = "Entrada.findByIndexId", query = "SELECT e FROM Entrada e WHERE e.indexId = :indexId"),
         @NamedQuery(name = "Entrada.findByFechaEntrada", query = "SELECT e FROM Entrada e WHERE e.fechaEntrada = :fechaEntrada"),
         @NamedQuery(name = "Entrada.findByProveedor", query = "SELECT e FROM Entrada e WHERE e.proveedor = :proveedor"),
-        @NamedQuery(name = "Entrada.findByDetalle", query = "SELECT e FROM Entrada e WHERE e.detalle = :detalle"),
-        @NamedQuery(name = "Entrada.findByCliente", query = "SELECT e FROM Entrada e WHERE e.cliente = :cliente"),
-        @NamedQuery(name = "Entrada.findByPedDevcl", query = "SELECT e FROM Entrada e WHERE e.pedDevcl = :pedDevcl") })
+        /*@NamedQuery(name = "Entrada.findByDetalle", query = "SELECT e FROM Entrada e WHERE e.detalle = :detalle"),*/
+        /*@NamedQuery(name = "Entrada.findByCliente", query = "SELECT e FROM Entrada e WHERE e.cliente = :cliente"),
+@NamedQuery(name = "Entrada.findByPedDevcl", query = "SELECT e FROM Entrada e WHERE e.pedDevcl = :pedDevcl")*/ })
 public class Entrada implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,7 +43,7 @@ public class Entrada implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "index_id")
-    private Integer indexId;
+    private Long indexId;
     @Basic(optional = false)
     // @NotNull
     @Column(name = "fecha_entrada")
@@ -54,47 +54,47 @@ public class Entrada implements Serializable {
     // @Size(min = 1, max = 60)
     @Column(name = "proveedor")
     private String proveedor;
+    //@Basic(optional = false)
+    // @NotNull
+    // @Size(min = 1, max = 60)
+    //@Column(name = "detalle")
+    //private String detalle;
     @Basic(optional = false)
     // @NotNull
     // @Size(min = 1, max = 60)
-    @Column(name = "detalle")
-    private String detalle;
-    @Basic(optional = false)
+    //@Column(name = "cliente")
+    //private String cliente;
+    //@Basic(optional = true)
     // @NotNull
-    // @Size(min = 1, max = 60)
-    @Column(name = "cliente")
-    private String cliente;
-    @Basic(optional = true)
-    // @NotNull
-    @Column(name = "ped_devcl")
-    private boolean pedDevcl;
+    //@Column(name = "ped_devcl")
+    //private boolean pedDevcl;
     @Column(name = "ref_producto")
-    private Integer refProducto;
+    private Long refProducto;
 
     private Detalle detalleCompleto;
 
     public Entrada() {
     }
 
-    public Entrada(Integer indexId) {
+    public Entrada(Long indexId) {
         this.indexId = indexId;
     }
 
-    public Entrada(Integer indexId, Date fechaEntrada, String proveedor, String detalle, String cliente,
-            boolean pedDevcl) {
+    public Entrada(Long indexId, Date fechaEntrada, String proveedor/*, String detalle , String cliente,
+            boolean pedDevcl*/) {
         this.indexId = indexId;
         this.fechaEntrada = fechaEntrada;
         this.proveedor = proveedor;
-        this.detalle = detalle;
-        this.cliente = cliente;
-        this.pedDevcl = pedDevcl;
+        //this.detalle = detalle;
+        //this.cliente = cliente;
+        //this.pedDevcl = pedDevcl;
     }
 
-    public Integer getIndexId() {
+    public Long getIndexId() {
         return indexId;
     }
 
-    public void setIndexId(Integer indexId) {
+    public void setIndexId(Long indexId) {
         this.indexId = indexId;
     }
 
@@ -114,29 +114,29 @@ public class Entrada implements Serializable {
         this.proveedor = proveedor;
     }
 
-    public String getDetalle() {
-        return detalle;
-    }
+    //public String getDetalle() {
+    //    return detalle;
+    //}
 
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
-    }
+    //public void setDetalle(String detalle) {
+    //    this.detalle = detalle;
+    //}
 
-    public String getCliente() {
-        return cliente;
-    }
+    //public String getCliente() {
+    //    return cliente;
+    //}
 
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
-    }
+    //public void setCliente(String cliente) {
+    //    this.cliente = cliente;
+    //}
 
-    public boolean getPedDevcl() {
-        return pedDevcl;
-    }
+    //public boolean getPedDevcl() {
+    //    return pedDevcl;
+    //}
 
-    public void setPedDevcl(boolean pedDevcl) {
-        this.pedDevcl = pedDevcl;
-    }
+    //public void setPedDevcl(boolean pedDevcl) {
+    //    this.pedDevcl = pedDevcl;
+    //}
 
     public Detalle getDetalleCompleto() {
         return detalleCompleto;
@@ -146,11 +146,11 @@ public class Entrada implements Serializable {
         this.detalleCompleto = detalle;
     }
 
-    public Integer getRefProducto() {
+    public Long getRefProducto() {
         return this.refProducto;
     }
     
-    public void setRefProducto(Integer refProducto) {
+    public void setRefProducto(Long refProducto) {
         this.refProducto = refProducto;
     }    
 

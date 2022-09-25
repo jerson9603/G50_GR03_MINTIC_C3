@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head th:insert="head.html"></head>
+    <body>
+        <header>
+            <div th:insert="navbar.html"></div>
+        </header>
+        <main>
+            <div class="container">
+                <form
+                    action="#"
+                    th:action="@{/entrada/update}"
+                    th:method="POST"
+                >
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <label for="indexId" class="form-label">ID</label>
+                            <input id="indexId"
+                                    type="text"
+                                    th:value="*{ENTRADA.indexId}"
+                                    class="form-control"
+                                    name="indexId"
+                                    readonly
+                                    >
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaEntrada" class="form-label">Fecha Entrada</label>
+                            <input id="fechaEntrada"
+                                    type="date"
+                                    th:value="*{ENTRADA.fechaEntrada}"
+                                    class="form-control"
+                                    name="fechaEntrada"
+                                    readonly
+                                    >
+                        </div>
+                        <div class="mb-3">
+                            <label for="proveedor" class="form-label">Nombre Proveedor/Cliente</label>
+                            <input type="text"
+                                    class="form-control" 
+                                    id="proveedor" 
+                                    placeholder="Proveedor/Cliente"
+                                    th:value="*{ENTRADA.proveedor}"
+                                    name="proveedor"
+                                    required
+                                    >
+                        </div>
+                        <div class="mb-3">
+                            <label for="refProducto" class="form-label">Referencia Producto</label>
+                            <input type="number" 
+                                    class="form-control" 
+                                    id="refProducto"
+                                    th:value="*{ENTRADA.refProducto}"
+                                    name="refProducto"
+                                    readonly
+                                    >
+                        </div>
+                        <div class="mb-3">
+                            <label for="cantidad" class="form-label">Unidades</label>
+                            <input type="number" 
+                                    class="form-control" 
+                                    id="cantidad"
+                                    th:value="*{DETALLE.cantidad}"
+                                    name="cantidad"
+                                    required
+                                    >
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre Producto</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    id="nombre" 
+                                    placeholder="Producto"
+                                    th:value="*{DETALLE.nombre}"
+                                    name="nombre"
+                                    required
+                                    >
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaVen" class="form-label">Vencimiento</label>
+                            <input type="date" 
+                                    class="form-control" 
+                                    id="fechaVen"
+                                    th:value="*{DETALLE.fechaVen}"
+                                    name="fechaVen"
+                                    required
+                                    >
+                        </div>
+                        <div class="mb-3">
+                            <label for="laboratorio" class="form-label">Laboratorio</label>
+                            <input type="text" 
+                                    class="form-control" 
+                                    id="laboratorio" 
+                                    placeholder="Laboratorio"
+                                    th:value="*{DETALLE.laboratorio}"
+                                    name="laboratorio"
+                                    required
+                                    >
+                        </div>
+                    </div>
+                    <button class="btn btn-primary col-3">Guardar</button>
+                    <a class="btn btn-info col-3" role="button" th:href="@{/entrada/list}">Volver</a>
+                </form> 
+            </div>    
+        </main>
+    </body>
+</html>
