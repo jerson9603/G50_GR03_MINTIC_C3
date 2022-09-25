@@ -1,19 +1,44 @@
 package com.misiontic2022.inventario.service;
 
 import java.util.List;
-import com.misiontic2022.inventario.domain.Usuario;
+import java.util.Optional;
 
-public interface UsuarioService {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-    public List<Usuario> findAll();
+import com.misiontic2022.inventario.interfaceService.IusuarioService;
+import com.misiontic2022.inventario.interfaces.IUsuario;
+import com.misiontic2022.inventario.modelo.Usuario;
 
-    public void save(Usuario usuario);
+@Service
+public class UsuarioService implements IusuarioService{
+    @Autowired
+    private IUsuario data;
+    
+    @Override
+    public List<Usuario> listar() {
+        // TODO Auto-generated method stub
+        return (List<Usuario>)data.findAll();
+    }
 
-    public void delete(Long id);
+    @Override
+    public Optional<Usuario> listarId(int index_id) {
+        return data.findById(index_id);
+    }
 
-    public void delete(Usuario usuario);
+    @Override
+    public int save(Usuario u) {
+        int res=0;
+        Usuario usuario=data.save(u);
+        if(!usuario.equals(null)){ //cuando sea diferente de null
+            res=1;
+        }
+        return res;
+    }
 
-    public Usuario getById(Long id);
+    @Override
+    public void delete(int index_id) {
+        data.deleteById(index_id);        
+    }
 
-    public void update(Usuario usuario);
 }

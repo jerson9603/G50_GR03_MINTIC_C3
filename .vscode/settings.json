@@ -1,3 +1,19 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "liveServer.settings.port": 5501,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "inventario",
+            "database": "inventariodrogue",
+            "username": "Grupo3",
+            "password": "mintic2816"
+        }
+    ]
 }

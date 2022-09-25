@@ -176,12 +176,12 @@ INSERT INTO `salidas` (`index_id`, `fecha_sal`, `detalle`, `proveedor`, `ref_pro
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE `usuarios` (
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE `usuario` (
   `index_id` int(11) NOT NULL,
   `nombre` varchar(60) NOT NULL,
   `nombre_usuario` varchar(60) NOT NULL,
-  `contraseña` varchar(60) NOT NULL
+  `clave` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

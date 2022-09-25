@@ -1,0 +1,67 @@
+body{
+    background: url(../img/fondomedico.jpg) no-repeat center center fixed;
+    background-size:cover;
+    position: relative;
+}
+
+.main-section{
+    margin:0 auto;
+    margin-top:25%;
+    padding: 0;
+    position: relative;
+}
+
+.modal-content{
+    background-color: #a8bdc4;
+    opacity: .85;
+    padding: 0 20px;
+    box-shadow: 0px 0px 3px #2f05ff;
+    border-radius: 20px;
+    width:max-content;
+    padding: 17px;
+    top: 10px;
+    position:absolute;
+    left: 450px;
+    transform: translate(-50%,-50%);
+
+}
+.user-img{
+    margin-top: -50px;
+    margin-bottom: 35px;
+}
+
+.user-img img{
+    width: 100xp;
+    height: 100px;
+    box-shadow: 0px 0px 3px #4004f6;
+    border-radius: 50%;
+}
+
+.form-group input{
+    height: 42px;
+    font-size: 18px;
+    border:0;
+    padding-left: 54px;
+    border-radius: 5px;
+}
+
+.form-group::before{
+    font-family: "Font Awesome\ 5 Free";
+    position: absolute;
+    left: 28px;
+    font-size: 22px;
+    padding-top:2px;
+}
+
+.form-group#user-group::before{
+    content: "\f007";
+}
+
+.form-group#clave-group::before{
+    content: "\f023";
+}
+
+button{
+    width: 60%;
+    margin: 5px 0 25px;
+}
