@@ -21,6 +21,8 @@ import javax.persistence.TemporalType;
 //import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+//import com.fasterxml.jackson.databind.ser.std.StdArraySerializers.LongArraySerializer;
+
 /**
  *
  * @author judit
@@ -43,7 +45,7 @@ public class Entrada implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "index_id")
-    private Integer indexId;
+    private Long indexId;
     @Basic(optional = false)
     // @NotNull
     @Column(name = "fecha_entrada")
@@ -69,18 +71,18 @@ public class Entrada implements Serializable {
     @Column(name = "ped_devcl")
     private boolean pedDevcl;
     @Column(name = "ref_producto")
-    private Integer refProducto;
+    private Long refProducto;
 
     private Detalle detalleCompleto;
 
     public Entrada() {
     }
 
-    public Entrada(Integer indexId) {
+    public Entrada(Long indexId) {
         this.indexId = indexId;
     }
 
-    public Entrada(Integer indexId, Date fechaEntrada, String proveedor, String detalle, String cliente,
+    public Entrada(Long indexId, Date fechaEntrada, String proveedor, String detalle, String cliente,
             boolean pedDevcl) {
         this.indexId = indexId;
         this.fechaEntrada = fechaEntrada;
@@ -90,11 +92,11 @@ public class Entrada implements Serializable {
         this.pedDevcl = pedDevcl;
     }
 
-    public Integer getIndexId() {
+    public Long getIndexId() {
         return indexId;
     }
 
-    public void setIndexId(Integer indexId) {
+    public void setIndexId(Long indexId) {
         this.indexId = indexId;
     }
 
@@ -146,11 +148,11 @@ public class Entrada implements Serializable {
         this.detalleCompleto = detalle;
     }
 
-    public Integer getRefProducto() {
+    public Long getRefProducto() {
         return this.refProducto;
     }
     
-    public void setRefProducto(Integer refProducto) {
+    public void setRefProducto(Long refProducto) {
         this.refProducto = refProducto;
     }    
 

@@ -80,7 +80,7 @@
             Subtotales no son editables, son automaticamente calculados }//--> 
            <!-- <th scope="col">Subtotal compra($)</th>
             <th scope="col">Subtotal venta($)</th>//--> 
-           <!-- <th scope="col">Opciones</th>//--> 
+           <th scope="col">Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -90,11 +90,21 @@
             <td th:text="${salida.fechaSal}"></td>
             <td th:text="${salida.proveedor}"></td>
             <td th:text="${salida.detalleCompleto.refProducto}"></td>
-            <td th:text="${salida.detalleCompleto.cantidad}"></td>
+            <td th:text="${salida.cantidad}"></td>
             <td th:text="${salida.ventDevpro}"></td>
             <td th:text="${salida.cliente}"></td>
-          
-
+            <td>
+              <a class="btn btn-secondary" role="button"
+                th:href="@{'/salida/edit/'+ ${salida.indexId}}">
+                Editar
+              </a>
+              <a class="btn btn-danger"
+                th:attr="onclick='guardar(' + ${salida.indexId} + ')'"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Eliminar  
+              </a>
+            </td>
+            
             <!-- <td>Dolex Forte Capsula Adulto 300 mg</td>
             <td>12-01-2023</td>
             <td>SI</td>
@@ -104,7 +114,7 @@
             <td>3000</td>//--> 
             <!-- Si se edita, actualizar automaticamente }//--> 
             <!-- Si se borra, preguntar si se esta seguro de ser borrado permanentemente}//--> 
-            <!-- <td>Editar | Borrar</td>//-->
+           <!-- <td>Editar | Borrar</td>//-->
           </tr>
          <!-- <tr>
             <td>Venta</td>
@@ -161,7 +171,42 @@
         </tbody>
       </table>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirmacion</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form 
+			      		id="eliminarForm"
+			      		action="#"
+			      		th:method="GET"
+			      		th:action="@{/salida/delete}"
+			      		>
+				      <div class="modal-body">
+				      	¿Desea eliminar la salida?
+				      	<input 
+				      			type="hidden" 
+				      			id="idSalidaAEliminar" 
+				      			name="indexId">
+				      </div>
+				      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					        <button type="submit" class="btn btn-primary">Confirmar</button>
+				      </div>
+				  </form>
+			    </div>
+			  </div>
+			</div>
   </main>
+  <script>
+    function guardar(id){
+      console.log(id);
+      document.getElementById('idSalidaAEliminar').value = id;
+    }
+  </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>

@@ -45,7 +45,7 @@ public class Salida implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "index_id")
-    private Integer indexId;
+    private Long indexId;
     @Basic(optional = false)
     //@NotNull
     @Column(name = "fecha_sal")
@@ -64,7 +64,7 @@ public class Salida implements Serializable {
     @Basic(optional = false)
     //@NotNull
     @Column(name = "ref_producto")
-    private int refProducto;
+    private Long refProducto;
     @Basic(optional = false)
     //@NotNull
     @Column(name = "cantidad")
@@ -79,16 +79,17 @@ public class Salida implements Serializable {
     @Column(name = "cliente")
     private String cliente;
 
+
     private Detalle detalleCompleto;
 
     public Salida() {
     }
 
-    public Salida(Integer indexId) {
+    public Salida(Long indexId) {
         this.indexId = indexId;
     }
 
-    public Salida(Integer indexId, Date fechaSal, String detalle, String proveedor, int refProducto, int cantidad, boolean ventDevpro, String cliente) {
+    public Salida(Long indexId, Date fechaSal, String detalle, String proveedor, Long refProducto, int cantidad, boolean ventDevpro, String cliente) {
         this.indexId = indexId;
         this.fechaSal = fechaSal;
         this.detalle = detalle;
@@ -99,11 +100,11 @@ public class Salida implements Serializable {
         this.cliente = cliente;
     }
 
-    public Integer getIndexId() {
+    public Long getIndexId() {
         return indexId;
     }
 
-    public void setIndexId(Integer indexId) {
+    public void setIndexId(Long indexId) {
         this.indexId = indexId;
     }
 
@@ -131,11 +132,11 @@ public class Salida implements Serializable {
         this.proveedor = proveedor;
     }
 
-    public int getRefProducto() {
+    public Long getRefProducto() {
         return this.refProducto;
     }
 
-    public void setRefProducto(Integer refProducto) {
+    public void setRefProducto(Long refProducto) {
         this.refProducto = refProducto;
     }
 

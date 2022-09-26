@@ -44,7 +44,7 @@ public class Detalle implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "index_id")
-    private Integer indexId;
+    private Long indexId;
     @Basic(optional = false)
     // @NotNull
     @Column(name = "cantidad")
@@ -53,7 +53,7 @@ public class Detalle implements Serializable {
     // @NotNull
     // @Size(min = 1, max = 30)
     @Column(name = "ref_producto")
-    private String refProducto;
+    private Long refProducto;
     @Basic(optional = false)
     // @NotNull
     @Column(name = "precio_uni")
@@ -76,11 +76,11 @@ public class Detalle implements Serializable {
     public Detalle() {
     }
 
-    public Detalle(Integer indexId) {
+    public Detalle(Long indexId) {
         this.indexId = indexId;
     }
 
-    public Detalle(Integer indexId, int cantidad, String refProducto, float precioUni, float subtotal,
+    public Detalle(Long indexId, int cantidad, Long refProducto, float precioUni, float subtotal,
             Date fechaIngreso, Date fechaSalida) {
         this.indexId = indexId;
         this.cantidad = cantidad;
@@ -91,11 +91,11 @@ public class Detalle implements Serializable {
         this.fechaSalida = fechaSalida;
     }
 
-    public Integer getIndexId() {
+    public Long getIndexId() {
         return indexId;
     }
 
-    public void setIndexId(Integer indexId) {
+    public void setIndexId(Long indexId) {
         this.indexId = indexId;
     }
 
@@ -107,11 +107,11 @@ public class Detalle implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public String getRefProducto() {
+    public Long getRefProducto() {
         return refProducto;
     }
 
-    public void setRefProducto(String refProducto) {
+    public void setRefProducto(Long refProducto) {
         this.refProducto = refProducto;
     }
 
