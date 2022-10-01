@@ -85,7 +85,10 @@
 					<includes>
 					<include>${project.build.directory}/${project.build.finalName}.jar</include>
 					</includes>
-					<jdkVersion>${java.version}</jdkVersion>
+					<jdkVersion>
+					<source>18</source>
+					<target>18</target>
+					</jdkVersion>
 					<processTypes>
 					<web>java $JAVA_OPTS -jar target/${project.build.finalName}.jar</web>
 					</processTypes>
