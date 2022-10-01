@@ -57,7 +57,9 @@ public class EntradaController {
         @RequestParam(value="indexId",required=true)
         Long indexId
     ) {
+        long idDetalle = this.entradaService.getById(indexId).getRefProducto();
         this.entradaService.delete(indexId);
+        this.detalleService.delete(idDetalle);
 
         return "redirect:/entrada/list";
     }
