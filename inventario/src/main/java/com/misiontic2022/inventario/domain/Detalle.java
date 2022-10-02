@@ -191,6 +191,8 @@ public class Detalle implements Serializable {
         this.fechaVen = fechaVen;
     }
 
+    
+
     @Override
     public int hashCode() {
         int hash = 0;

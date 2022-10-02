@@ -135,9 +135,7 @@ public class EntradaController {
         // agregamos entrada y detalle al objeto modelAndView
         modelAndView.addObject("ENTRADA",entrada);
 
-        // toDo: Esto debe ser "false" en salidas!!
-        // toDO: Por que esto NO FUNCIONA??
-        detalle.setEnt_Sal(true);
+        
         
         modelAndView.addObject("DETALLE",detalle);
         
@@ -165,6 +163,10 @@ public class EntradaController {
         // new Date() pone la fecha de hoy
         Date date = new Date();
         entrada.setFechaEntrada(date);
+
+        // toDo: Esto debe ser "false" en salidas!!
+        // toDO: Por que esto NO FUNCIONA??
+        detalle.setEnt_Sal(true);
         
         // guardar newDetalle con la info del atributo detalle
         Detalle newDetalle = this.detalleService.save(detalle);

@@ -32,8 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
         @NamedQuery(name = "Existencia.findAll", query = "SELECT e FROM Existencia e"),
         @NamedQuery(name = "Existencia.findByIndexId", query = "SELECT e FROM Existencia e WHERE e.indexId = :indexId"),
-        @NamedQuery(name = "Existencia.findByCantidad", query = "SELECT e FROM Existencia e WHERE e.cantidad = :cantidad"),
-        @NamedQuery(name = "Existencia.findByFechaIngreso", query = "SELECT e FROM Existencia e WHERE e.fechaIngreso = :fechaIngreso") })
+        @NamedQuery(name = "Existencia.findByCantidad", query = "SELECT e FROM Existencia e WHERE e.cantidad = :cantidad") })
 public class Existencia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,14 +45,16 @@ public class Existencia implements Serializable {
     // @NotNull
     @Column(name = "cantidad")
     private int cantidad;
-    @Basic(optional = false)
-    // @NotNull
-    @Column(name = "fecha_ingreso")
+
+    @Column(name = "nombreProd")
+    private String nombreProd;
+    @Column(name = "laboratorio")
+    private String laboratorio;
+    @Column(name = "fecha_ven")
     @Temporal(TemporalType.DATE)
-    private Date fechaIngreso;
-    @JoinColumn(name = "ref_producto", referencedColumnName = "index_id")
-    @ManyToOne(optional = false)
-    private Producto refProducto;
+    private Date fechaVen;
+
+
 
     public Existencia() {
     }
@@ -62,10 +63,9 @@ public class Existencia implements Serializable {
         this.indexId = indexId;
     }
 
-    public Existencia(Integer indexId, int cantidad, Date fechaIngreso) {
+    public Existencia(Integer indexId, int cantidad) {
         this.indexId = indexId;
         this.cantidad = cantidad;
-        this.fechaIngreso = fechaIngreso;
     }
 
     public Integer getIndexId() {
@@ -84,21 +84,32 @@ public class Existencia implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Date getFechaIngreso() {
-        return fechaIngreso;
+    public String getNombreProd() {
+        return nombreProd;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
+    public void setNombre(String nombreProd) {
+        this.nombreProd = nombreProd;
     }
 
-    public Producto getRefProducto() {
-        return refProducto;
+    public String getLaboratorio() {
+        return laboratorio;
     }
 
-    public void setRefProducto(Producto refProducto) {
-        this.refProducto = refProducto;
+    public void setLaboratorio(String laboratorio) {
+        this.laboratorio = laboratorio;
     }
+
+    public Date getFechaVen() {
+        return fechaVen;
+    }
+
+    public void setFechaVen(Date fechaVen) {
+        this.fechaVen = fechaVen;
+    }
+
+
+    
 
     @Override
     public int hashCode() {
