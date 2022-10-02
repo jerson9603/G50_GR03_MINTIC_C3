@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping("/")
+
 public class ExistenciaController {
 
     @RequestMapping("/existencia") // path to renderize. "/":root of my project

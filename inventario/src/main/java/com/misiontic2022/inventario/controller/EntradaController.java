@@ -29,7 +29,7 @@ import com.misiontic2022.inventario.service.EntradaService;
 @Controller
 // all the following paths will be in reference to /entrada!, 
 // e.g. @GetMapping("/list") in line 42 = @GetMapping("/entrada/list")
-@RequestMapping("/entrada")
+//@RequestMapping("/entrada")
 public class EntradaController {
     
     // You can use @Autowired annotation on properties to get rid of the setter methods
@@ -39,7 +39,7 @@ public class EntradaController {
     private DetalleService detalleService;
 
     // e.g. @GetMapping("/list") in line 40 = @GetMapping("/entrada/list")
-    @GetMapping("/list")
+    @GetMapping("/entrada/list")
     // no retorna una lista, es un String con el nombre del html
     public String list (Model model) {
 
@@ -67,7 +67,7 @@ public class EntradaController {
         return "entradas";
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping("/entrada/delete")
     // atributo es Long indexId
     public String delete (
         @RequestParam(value="indexId",required=true)
@@ -81,13 +81,16 @@ public class EntradaController {
         this.detalleService.delete(idDetalle);
 
         // toDo: POR QUE redirect?
+        // una vez borre, redireccion a funcion "list" aqui dentro
         return "redirect:/entrada/list";// this is linked to the name of the html file in
         // resources/templates/entrada.html/list
     }
 
     // toDo: Cual es la diferencia entre este edit y el update abajo?
+    // edit es la pag edit y llenar, guardar ya es el update, y save hace uno nuevo
     // toDo: POR QUE a veces el atributo es el modelo y a veces no?
-    @RequestMapping("/edit/{id}")
+    // porque el modelo es donde se agrega lo que se va a usar en el html
+    @RequestMapping("/entrada/edit/{id}")
     public String edit (
         @PathVariable(name="id")
         Long indexId,
@@ -107,7 +110,7 @@ public class EntradaController {
     }
     
 
-    @PostMapping(value="/update")
+    @PostMapping(value="/entrada/update")
     public String update (
         @ModelAttribute("ENTRADA")
         Entrada entrada,
@@ -123,7 +126,8 @@ public class EntradaController {
     
 
     // toDo: Que hace el objeto ModelAndView?
-    @RequestMapping("/new")
+    // 
+    @RequestMapping("/entrada/new")
     public ModelAndView newUser() {
         Entrada entrada = new Entrada();
         Detalle detalle = new Detalle();
@@ -131,6 +135,7 @@ public class EntradaController {
         
 
         // creamos objeto ModelAndView
+        // nombre del html
         ModelAndView modelAndView = new ModelAndView("nuevaEntrada");
         // agregamos entrada y detalle al objeto modelAndView
         modelAndView.addObject("ENTRADA",entrada);
@@ -149,7 +154,8 @@ public class EntradaController {
 
     // RequestMapping with method RequesMethod.POST equals PostMapping WITHOUT attribute method
     // toDo: Que es el objeto BindingResult
-    @PostMapping(value="/save")
+    // para asegurarse que la db fue persistida correctamente
+    @PostMapping(value="/entrada/save")
     public String save(
         @ModelAttribute(name="ENTRADA")
         Entrada entrada,
@@ -165,7 +171,6 @@ public class EntradaController {
         entrada.setFechaEntrada(date);
 
         // toDo: Esto debe ser "false" en salidas!!
-        // toDO: Por que esto NO FUNCIONA??
         detalle.setEnt_Sal(true);
         
         // guardar newDetalle con la info del atributo detalle
@@ -178,8 +183,8 @@ public class EntradaController {
         return "redirect:/entrada/list";
     }
 
-    // toDo: Que hace InitBinder?
-    // cambiar formato de fecha, antes tenia tambien hora, ahora solo tendra fecha en formato yyyy-MM-dd
+    
+    // InitBinder: cambiar formato de fecha, antes tenia tambien hora, ahora solo tendra fecha en formato yyyy-MM-dd
     @InitBinder
     public void initBinder(WebDataBinder WebDataBinder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
