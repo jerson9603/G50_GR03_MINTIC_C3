@@ -88,7 +88,7 @@ public class Existencia implements Serializable {
         return nombreProd;
     }
 
-    public void setNombre(String nombreProd) {
+    public void setNombreProd(String nombreProd) {
         this.nombreProd = nombreProd;
     }
 
