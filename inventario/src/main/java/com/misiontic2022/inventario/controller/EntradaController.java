@@ -120,8 +120,10 @@ public class EntradaController {
         Date date = new Date();
         entrada.setFechaEntrada(date);
         
+        Detalle newDetalle = this.detalleService.save(detalle);
+        entrada.setRefProducto(newDetalle.getIndexId());
         this.entradaService.save(entrada);
-        this.detalleService.save(detalle);
+        
         return "redirect:/entrada/list";
     }
 
