@@ -79,6 +79,9 @@ public class Detalle implements Serializable {
     @Column(name = "fecha_ven")
     @Temporal(TemporalType.DATE)
     private Date fechaVen;
+    // Ent_Salida, entrada o salida. Entrada = True, Salida = False
+    @Column(name = "ent_sal")
+    private boolean ent_sal;
     
 
     public Detalle() {
@@ -114,6 +117,15 @@ public class Detalle implements Serializable {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public boolean getEnt_Sal() {
+        return ent_sal;
+    }
+
+    public void setEnt_Sal(boolean ent_sal) {
+        this.ent_sal = ent_sal;
+    }
+
 
     //public Long getRefProducto() {
     //    return refProducto;

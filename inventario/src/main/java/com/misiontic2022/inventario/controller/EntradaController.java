@@ -128,11 +128,22 @@ public class EntradaController {
         Entrada entrada = new Entrada();
         Detalle detalle = new Detalle();
 
+        
+
         // creamos objeto ModelAndView
         ModelAndView modelAndView = new ModelAndView("nuevaEntrada");
         // agregamos entrada y detalle al objeto modelAndView
         modelAndView.addObject("ENTRADA",entrada);
+
+        // toDo: Esto debe ser "false" en salidas!!
+        // toDO: Por que esto NO FUNCIONA??
+        detalle.setEnt_Sal(true);
+        
         modelAndView.addObject("DETALLE",detalle);
+        
+        
+        //detalleService.update(detalle);
+        
 
         // retorna el objeto modelAndView
         return modelAndView;
