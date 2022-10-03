@@ -1,129 +1,113 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.misiontic2022.inventario.domain;
+import java.util.Collection;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-//import javax.validation.constraints.NotNull;
-//import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.UniqueConstraint;
 
-/**
- *
- * @author judit
- */
 @Entity
-@Table(name = "usuarios")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByIndexId", query = "SELECT u FROM Usuario u WHERE u.indexId = :indexId"),
-    @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
-    @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
-    @NamedQuery(name = "Usuario.findByContrase\u00f1a", query = "SELECT u FROM Usuario u WHERE u.contrase\u00f1a = :contrase\u00f1a")})
-public class Usuario implements Serializable {
+@Table(name = "usuarios", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+public class Usuario {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "index_id")
-    private Integer indexId;
-    @Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 60)
-    @Column(name = "nombre")
-    private String nombre;
-    @Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 60)
-    @Column(name = "nombre_usuario")
-    private String nombreUsuario;
-    @Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 60)
-    @Column(name = "contrase\u00f1a")
-    private String contraseña;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int index_id;
 
-    public Usuario() {
-    }
+	@Column(name = "nombre")
+	private String nombre;
 
-    public Usuario(Integer indexId) {
-        this.indexId = indexId;
-    }
+	@Column(name = "apellido")
+	private String apellido;
 
-    public Usuario(Integer indexId, String nombre, String nombreUsuario, String contraseña) {
-        this.indexId = indexId;
-        this.nombre = nombre;
-        this.nombreUsuario = nombreUsuario;
-        this.contraseña = contraseña;
-    }
+	private String email;
+	private String password;
+	
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "usuarios_roles",
+			joinColumns = @JoinColumn(name = "usuario_id",referencedColumnName = "index_id"),
+			inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "index_id")
+			)
+	private Collection<Rol> roles;
 
-    public Integer getIndexId() {
-        return indexId;
-    }
+	public int getIndex_id() {
+		return index_id;
+	}
 
-    public void setIndexId(Integer indexId) {
-        this.indexId = indexId;
-    }
+	public void setId(int index_id) {
+		this.index_id = index_id;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
+	public String getApellido() {
+		return apellido;
+	}
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 
-    public String getContraseña() {
-        return contraseña;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (indexId != null ? indexId.hashCode() : 0);
-        return hash;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
-            return false;
-        }
-        Usuario other = (Usuario) object;
-        if ((this.indexId == null && other.indexId != null) || (this.indexId != null && !this.indexId.equals(other.indexId))) {
-            return false;
-        }
-        return true;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    @Override
-    public String toString() {
-        return "clases.Usuario[ indexId=" + indexId + " ]";
-    }
-    
+	public Collection<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Rol> roles) {
+		this.roles = roles;
+	}
+
+	public Usuario(int index_id, String nombre, String apellido, String email, String password, Collection<Rol> roles) {
+		super();
+		this.index_id = index_id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+	}
+
+	public Usuario(String nombre, String apellido, String email, String password, Collection<Rol> roles) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+	}
+
+	public Usuario() {
+		
+	}
+
 }
