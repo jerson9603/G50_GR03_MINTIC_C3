@@ -32,11 +32,11 @@ import javax.xml.bind.annotation.XmlRootElement;
         @NamedQuery(name = "Detalle.findAll", query = "SELECT d FROM Detalle d"),
         @NamedQuery(name = "Detalle.findByIndexId", query = "SELECT d FROM Detalle d WHERE d.indexId = :indexId"),
         @NamedQuery(name = "Detalle.findByCantidad", query = "SELECT d FROM Detalle d WHERE d.cantidad = :cantidad"),
-        @NamedQuery(name = "Detalle.findByRefProducto", query = "SELECT d FROM Detalle d WHERE d.refProducto = :refProducto"),
-        @NamedQuery(name = "Detalle.findByPrecioUni", query = "SELECT d FROM Detalle d WHERE d.precioUni = :precioUni"),
-        @NamedQuery(name = "Detalle.findBySubtotal", query = "SELECT d FROM Detalle d WHERE d.subtotal = :subtotal"),
-        @NamedQuery(name = "Detalle.findByFechaIngreso", query = "SELECT d FROM Detalle d WHERE d.fechaIngreso = :fechaIngreso"),
-        @NamedQuery(name = "Detalle.findByFechaSalida", query = "SELECT d FROM Detalle d WHERE d.fechaSalida = :fechaSalida") })
+        /*@NamedQuery(name = "Detalle.findByRefProducto", query = "SELECT d FROM Detalle d WHERE d.refProducto = :refProducto")*/
+        //@NamedQuery(name = "Detalle.findByPrecioUni", query = "SELECT d FROM Detalle d WHERE d.precioUni = :precioUni"),
+        //@NamedQuery(name = "Detalle.findBySubtotal", query = "SELECT d FROM Detalle d WHERE d.subtotal = :subtotal"),
+        //@NamedQuery(name = "Detalle.findByFechaIngreso", query = "SELECT d FROM Detalle d WHERE d.fechaIngreso = :fechaIngreso"),
+/*@NamedQuery(name = "Detalle.findByFechaSalida", query = "SELECT d FROM Detalle d WHERE d.fechaSalida = :fechaSalida")*/ })
 public class Detalle implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,29 +49,40 @@ public class Detalle implements Serializable {
     // @NotNull
     @Column(name = "cantidad")
     private int cantidad;
-    @Basic(optional = false)
+    //@Basic(optional = false)
     // @NotNull
     // @Size(min = 1, max = 30)
-    @Column(name = "ref_producto")
-    private Long refProducto;
-    @Basic(optional = false)
+    //@Column(name = "ref_producto")
+    //private Long refProducto;
+    //@Basic(optional = false)
     // @NotNull
-    @Column(name = "precio_uni")
-    private float precioUni;
-    @Basic(optional = false)
+    //@Column(name = "precio_uni")
+    //private float precioUni;
+    //@Basic(optional = false)
     // @NotNull
-    @Column(name = "subtotal")
-    private float subtotal;
-    @Basic(optional = false)
+    //@Column(name = "subtotal")
+    //private float subtotal;
+    //@Basic(optional = false)
     // @NotNull
-    @Column(name = "fecha_ingreso")
+    //@Column(name = "fecha_ingreso")
+    //@Temporal(TemporalType.DATE)
+    //private Date fechaIngreso;
+    //@Basic(optional = false)
+    // @NotNull
+    //@Column(name = "fecha_salida")
+    //@Temporal(TemporalType.DATE)
+    //private Date fechaSalida;
+    @Column(name = "nombre")
+    private String nombre;
+    @Column(name = "laboratorio")
+    private String laboratorio;
+    @Column(name = "fecha_ven")
     @Temporal(TemporalType.DATE)
-    private Date fechaIngreso;
-    @Basic(optional = false)
-    // @NotNull
-    @Column(name = "fecha_salida")
-    @Temporal(TemporalType.DATE)
-    private Date fechaSalida;
+    private Date fechaVen;
+    // Ent_Salida, entrada o salida. Entrada = True, Salida = False
+    @Column(name = "ent_sal")
+    private boolean ent_sal;
+    
 
     public Detalle() {
     }
@@ -80,15 +91,15 @@ public class Detalle implements Serializable {
         this.indexId = indexId;
     }
 
-    public Detalle(Long indexId, int cantidad, Long refProducto, float precioUni, float subtotal,
-            Date fechaIngreso, Date fechaSalida) {
+    public Detalle(Long indexId, int cantidad/* , Long refProducto/*, float precioUni, float subtotal,
+            Date fechaIngreso, Date fechaSalida*/) {
         this.indexId = indexId;
         this.cantidad = cantidad;
-        this.refProducto = refProducto;
-        this.precioUni = precioUni;
-        this.subtotal = subtotal;
-        this.fechaIngreso = fechaIngreso;
-        this.fechaSalida = fechaSalida;
+        //this.refProducto = refProducto;
+        //this.precioUni = precioUni;
+        //this.subtotal = subtotal;
+        //this.fechaIngreso = fechaIngreso;
+        //this.fechaSalida = fechaSalida;
     }
 
     public Long getIndexId() {
@@ -107,45 +118,80 @@ public class Detalle implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Long getRefProducto() {
-        return refProducto;
+    public boolean getEnt_Sal() {
+        return ent_sal;
     }
 
-    public void setRefProducto(Long refProducto) {
-        this.refProducto = refProducto;
+    public void setEnt_Sal(boolean ent_sal) {
+        this.ent_sal = ent_sal;
     }
 
-    public float getPrecioUni() {
-        return precioUni;
+
+    //public Long getRefProducto() {
+    //    return refProducto;
+    //}
+
+    //public void setRefProducto(Long refProducto) {
+    //    this.refProducto = refProducto;
+    //}
+
+    //public float getPrecioUni() {
+    //    return precioUni;
+    //}
+
+    //public void setPrecioUni(float precioUni) {
+    //    this.precioUni = precioUni;
+    //}
+
+    //public float getSubtotal() {
+    //    return subtotal;
+    //}
+
+    //public void setSubtotal(float subtotal) {
+    //    this.subtotal = subtotal;
+    //}
+
+    //public Date getFechaIngreso() {
+    //    return fechaIngreso;
+    //}
+
+    //public void setFechaIngreso(Date fechaIngreso) {
+    //    this.fechaIngreso = fechaIngreso;
+    //}
+
+    //public Date getFechaSalida() {
+    //    return fechaSalida;
+    //}
+
+    //public void setFechaSalida(Date fechaSalida) {
+    //    this.fechaSalida = fechaSalida;
+    //}
+
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setPrecioUni(float precioUni) {
-        this.precioUni = precioUni;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public float getSubtotal() {
-        return subtotal;
+    public String getLaboratorio() {
+        return laboratorio;
     }
 
-    public void setSubtotal(float subtotal) {
-        this.subtotal = subtotal;
+    public void setLaboratorio(String laboratorio) {
+        this.laboratorio = laboratorio;
     }
 
-    public Date getFechaIngreso() {
-        return fechaIngreso;
+    public Date getFechaVen() {
+        return fechaVen;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
+    public void setFechaVen(Date fechaVen) {
+        this.fechaVen = fechaVen;
     }
 
-    public Date getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public void setFechaSalida(Date fechaSalida) {
-        this.fechaSalida = fechaSalida;
-    }
+    
 
     @Override
     public int hashCode() {
@@ -174,3 +220,4 @@ public class Detalle implements Serializable {
     }
 
 }
+

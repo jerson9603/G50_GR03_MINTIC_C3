@@ -32,13 +32,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Salida.findAll", query = "SELECT s FROM Salida s"),
     @NamedQuery(name = "Salida.findByIndexId", query = "SELECT s FROM Salida s WHERE s.indexId = :indexId"),
     @NamedQuery(name = "Salida.findByFechaSal", query = "SELECT s FROM Salida s WHERE s.fechaSal = :fechaSal"),
-    @NamedQuery(name = "Salida.findByDetalle", query = "SELECT s FROM Salida s WHERE s.detalle = :detalle"),
+   // @NamedQuery(name = "Salida.findByDetalle", query = "SELECT s FROM Salida s WHERE s.detalle = :detalle"),
     @NamedQuery(name = "Salida.findByProveedor", query = "SELECT s FROM Salida s WHERE s.proveedor = :proveedor"),
-    @NamedQuery(name = "Salida.findByRefProducto", query = "SELECT s FROM Salida s WHERE s.refProducto = :refProducto"),
-    @NamedQuery(name = "Salida.findByCantidad", query = "SELECT s FROM Salida s WHERE s.cantidad = :cantidad"),
-    @NamedQuery(name = "Salida.findByVentDevpro", query = "SELECT s FROM Salida s WHERE s.ventDevpro = :ventDevpro"),
-    @NamedQuery(name = "Salida.findByCliente", query = "SELECT s FROM Salida s WHERE s.cliente = :cliente")})
-public class Salida implements Serializable {
+   // @NamedQuery(name = "Salida.findByRefProducto", query = "SELECT s FROM Salida s WHERE s.refProducto = :refProducto"),
+    //@NamedQuery(name = "Salida.findByCantidad", query = "SELECT s FROM Salida s WHERE s.cantidad = :cantidad"),
+    //@NamedQuery(name = "Salida.findByVentDevpro", query = "SELECT s FROM Salida s WHERE s.ventDevpro = :ventDevpro"),
+   // @NamedQuery(name = "Salida.findByCliente", query = "SELECT s FROM Salida s WHERE s.cliente = :cliente")
+})
+
+   public class Salida implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,38 +49,31 @@ public class Salida implements Serializable {
     @Column(name = "index_id")
     private Long indexId;
     @Basic(optional = false)
-    //@NotNull
-    @Column(name = "fecha_sal")
+    // @NotNull
+    @Column(name = "fecha_salida")
     @Temporal(TemporalType.DATE)
     private Date fechaSal;
     @Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 100)
-    @Column(name = "detalle")
-    private String detalle;
-    @Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 60)
+    // @NotNull
+    // @Size(min = 1, max = 60)
     @Column(name = "proveedor")
     private String proveedor;
-    @Basic(optional = false)
-    //@NotNull
-    @Column(name = "ref_producto")
-    private Long refProducto;
-    @Basic(optional = false)
-    //@NotNull
-    @Column(name = "cantidad")
-    private int cantidad;
-    @Basic(optional = false)
-    //@NotNull
-    @Column(name = "vent_devpro")
-    private boolean ventDevpro;
+    //@Basic(optional = false)
+    // @NotNull
+    // @Size(min = 1, max = 60)
+    //@Column(name = "detalle")
+    //private String detalle;
     @Basic(optional = false)
     // @NotNull
-    //@Size(min = 1, max = 60)
-    @Column(name = "cliente")
-    private String cliente;
-
+    // @Size(min = 1, max = 60)
+    //@Column(name = "cliente")
+    //private String cliente;
+    //@Basic(optional = true)
+    // @NotNull
+    //@Column(name = "ped_devcl")
+    //private boolean pedDevcl;
+    @Column(name = "ref_producto")
+    private Long refProducto;
 
     private Detalle detalleCompleto;
 
@@ -89,15 +84,14 @@ public class Salida implements Serializable {
         this.indexId = indexId;
     }
 
-    public Salida(Long indexId, Date fechaSal, String detalle, String proveedor, Long refProducto, int cantidad, boolean ventDevpro, String cliente) {
+    public Salida(Long indexId, Date fechaSal, String proveedor/*, String detalle , String cliente,
+            boolean pedDevcl*/) {
         this.indexId = indexId;
         this.fechaSal = fechaSal;
-        this.detalle = detalle;
         this.proveedor = proveedor;
-        this.refProducto = refProducto;
-        this.cantidad = cantidad;
-        this.ventDevpro = ventDevpro;
-        this.cliente = cliente;
+        //this.detalle = detalle;
+        //this.cliente = cliente;
+        //this.pedDevcl = pedDevcl;
     }
 
     public Long getIndexId() {
@@ -116,14 +110,6 @@ public class Salida implements Serializable {
         this.fechaSal = fechaSal;
     }
 
-    public Detalle getDetalleCompleto() {
-        return detalleCompleto;
-    }
-
-    public void setDetalle(Detalle detalle) {
-        this.detalleCompleto = detalle;
-    }
-
     public String getProveedor() {
         return proveedor;
     }
@@ -132,37 +118,45 @@ public class Salida implements Serializable {
         this.proveedor = proveedor;
     }
 
+    //public String getDetalle() {
+    //    return detalle;
+    //}
+
+    //public void setDetalle(String detalle) {
+    //    this.detalle = detalle;
+    //}
+
+    //public String getCliente() {
+    //    return cliente;
+    //}
+
+    //public void setCliente(String cliente) {
+    //    this.cliente = cliente;
+    //}
+
+    //public boolean getPedDevcl() {
+    //    return pedDevcl;
+    //}
+
+    //public void setPedDevcl(boolean pedDevcl) {
+    //    this.pedDevcl = pedDevcl;
+    //}
+
+    public Detalle getDetalleCompleto() {
+        return detalleCompleto;
+    }
+
+    public void setDetalleCompleto(Detalle detalle) {
+        this.detalleCompleto = detalle;
+    }
+
     public Long getRefProducto() {
         return this.refProducto;
     }
-
+    
     public void setRefProducto(Long refProducto) {
         this.refProducto = refProducto;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public boolean getVentDevpro() {
-        return ventDevpro;
-    }
-
-    public void setVentDevpro(boolean ventDevpro) {
-        this.ventDevpro = ventDevpro;
-    }
-
-    public String getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
-    }
+    }    
 
     @Override
     public int hashCode() {
@@ -178,7 +172,8 @@ public class Salida implements Serializable {
             return false;
         }
         Salida other = (Salida) object;
-        if ((this.indexId == null && other.indexId != null) || (this.indexId != null && !this.indexId.equals(other.indexId))) {
+        if ((this.indexId == null && other.indexId != null)
+                || (this.indexId != null && !this.indexId.equals(other.indexId))) {
             return false;
         }
         return true;
@@ -188,5 +183,5 @@ public class Salida implements Serializable {
     public String toString() {
         return "clases.Salida[ indexId=" + indexId + " ]";
     }
-    
+
 }

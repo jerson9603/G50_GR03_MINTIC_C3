@@ -19,8 +19,8 @@ public class DetalleServiceImpl implements DetalleService {
         return this.repositorio.findAll();
     }
 
-    public void save(Detalle detalle) {
-        this.repositorio.save(detalle);
+    public Detalle save(Detalle detalle) {
+        return this.repositorio.save(detalle);
     }
 
     public void delete(Long id) {
@@ -39,6 +39,11 @@ public class DetalleServiceImpl implements DetalleService {
         this.repositorio.save(detalle);
     }
 }
+
+
+
+
+
 
 
 

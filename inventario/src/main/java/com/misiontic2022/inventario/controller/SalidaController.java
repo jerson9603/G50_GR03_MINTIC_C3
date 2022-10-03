@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+//import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMethod;
+//import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,7 +32,8 @@ import com.misiontic2022.inventario.service.SalidaService;
 @Controller
 @RequestMapping("/salida")
 public class SalidaController {
-
+    
+    // You can use @Autowired annotation on properties to get rid of the setter methods
     @Autowired
     private SalidaService salidaService;
     @Autowired
@@ -39,28 +41,21 @@ public class SalidaController {
 
     @GetMapping("/list")
     public String list (Model model) {
-        List<Salida> salida = this.salidaService.findAll();
-        List<Detalle> detalles = this.detalleService.findAll();
+
+        List<Salida> salidas = this.salidaService.findAll();
         List<Salida> salidasFinal = new ArrayList<>();
 
-        for (Salida salidaAct : salida) {
-            //Detalle detalle = this.detalleService.getById(salidaAct.getRefProducto());
-            List<Detalle> detallesActual = new ArrayList<>();
+        for (Salida salidaAct : salidas) {
 
-            detallesActual = detalles.stream()
-               .filter(detalle -> detalle.getIndexId() == salidaAct.getRefProducto())
-               .collect(Collectors.toList());
+            Detalle detalle = this.detalleService.getById(salidaAct.getRefProducto());
 
-            //salidaAct.setDetalle(detalle);
-            //salidasFinal.add(salidaAct);
-
-            salidaAct.setDetalle(detallesActual.get(0));
+            salidaAct.setDetalleCompleto(detalle);
             salidasFinal.add(salidaAct);
-
         }
-       
-        model.addAttribute("SALIDAS", salidasFinal);
     
+        model.addAttribute("SALIDAS",salidasFinal);
+        
+        // vamos a templates/entradas.html
         return "salidas";
     }
 
@@ -69,28 +64,37 @@ public class SalidaController {
         @RequestParam(value="indexId",required=true)
         Long indexId
     ) {
+        long idDetalle = this.salidaService.getById(indexId).getRefProducto();
+       
         this.salidaService.delete(indexId);
+        this.detalleService.delete(idDetalle);
 
         return "redirect:/salida/list";
     }
 
+
+    
     @RequestMapping("/edit/{id}")
     public String edit (
         @PathVariable(name="id")
         Long indexId,
         Model model) {
+            // obtenemos entrada con el id indexId
+            
             Salida salida = this.salidaService.getById(indexId);
+            // obtenemos el detalle de la entrada con el id indexId
             Detalle detalle = this.detalleService.getById(salida.getRefProducto());
+
+
 
             model.addAttribute("SALIDAS", salida);
             model.addAttribute("DETALLE", detalle);
 
-
             return "editsalida";
-
     }
+    
 
-    @RequestMapping(value="/update", method=RequestMethod.POST)
+    @PostMapping(value="/update")
     public String update (
         @ModelAttribute("SALIDAS")
         Salida salida,
@@ -103,21 +107,30 @@ public class SalidaController {
 
         return "redirect:/salida/list";
     }
+    
 
+    // toDo: Que hace el objeto ModelAndView?
     @RequestMapping("/new")
     public ModelAndView newUser() {
         Salida salida = new Salida();
         Detalle detalle = new Detalle();
 
+        
         ModelAndView modelAndView = new ModelAndView("nuevaSalida");
         modelAndView.addObject("SALIDAS",salida);
+
         modelAndView.addObject("DETALLE",detalle);
+        
+        
+        //detalleService.update(detalle);
+        
 
-
+        // retorna el objeto modelAndView
         return modelAndView;
     }
 
-    @RequestMapping(value="/save", method=RequestMethod.POST)
+    
+    @PostMapping(value="/save")
     public String save(
         @ModelAttribute(name="SALIDAS")
         Salida salida,
@@ -128,14 +141,24 @@ public class SalidaController {
         if (result.hasErrors()) {
             return "nuevaSalida";
         }
-
+        // new Date() pone la fecha de hoy
         Date date = new Date();
         salida.setFechaSal(date);
+
+        // toDo: Esto debe ser "false" en salidas!!
+        // toDO: Por que esto NO FUNCIONA??
+        detalle.setEnt_Sal(false);
+        
+        
+        Detalle newDetalle = this.detalleService.save(detalle);
+        
+        salida.setRefProducto(newDetalle.getIndexId());
         
         this.salidaService.save(salida);
-        this.detalleService.save(detalle);
+        
         return "redirect:/salida/list";
     }
+
 
     @InitBinder
     public void initBinder(WebDataBinder WebDataBinder) {
@@ -143,6 +166,6 @@ public class SalidaController {
         dateFormat.setLenient(false);
         WebDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
-       
+        
+    
 }
-

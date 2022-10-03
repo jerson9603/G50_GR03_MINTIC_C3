@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org">
-<html>
-<nav 
-class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">INVENTARIO DE DROGUERIA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -16,12 +10,12 @@ class="navbar navbar-expand-lg bg-light">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                        href="disponibilidad">Disponibilidad</a>
+                        href="existencia">Existencia</a>
                 </li>
                 <li class="nav-item dropdown" id="Mydropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Entradas</a>
                     <ul class="dropdown-menu">
-                       <!-- <li> <a class="dropdown-item" th:href="@{/entrada/new}"> Nueva entrada</a></li>-->
+                        <li> <a class="dropdown-item" th:href="@{/entrada/new}"> Nueva entrada</a></li>
                         <li> <a class="dropdown-item" 
                                 th:href="@{/entrada/list}"> Ver entradas</a></li>
                     </ul>
@@ -29,9 +23,8 @@ class="navbar navbar-expand-lg bg-light">
                 <li class="nav-item dropdown" id="Mydropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Salidas</a>
                     <ul class="dropdown-menu">
-                        <!-- <li> <a class="dropdown-item" th:href="@{/salida/new}"> Nueva salida</a></li>-->
-                        <li> <a class="dropdown-item" 
-                                th:href="@{/salida/list}"> Ver salidas</a></li>
+                        <li> <a class="dropdown-item" th:href="@{/salida/new}"> Nueva salida</a></li>
+                        <li> <a class="dropdown-item" th:href="@{/salida/list}"> Ver salidas</a></li>
                     </ul>
                 </li>
             </ul>
