@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2022 a las 20:16:46
+-- Tiempo de generación: 03-10-2022 a las 21:39:47
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -45,7 +45,9 @@ INSERT INTO `detalles` (`index_id`, `cantidad`, `nombre`, `laboratorio`, `fecha_
 (14, 4, 'Losartan', 'Genfar', '2023-05-25', b'1'),
 (29, 5, 'Amoxicilina 500mg', 'MK', '2022-10-12', b'1'),
 (32, 2, 'Neurobion 500mg', 'Genfar', '2022-10-12', b'1'),
-(34, 52, 'Vitamina C', 'MK', '2022-10-20', b'1');
+(34, 52, 'Vitamina C', 'MK', '2022-10-20', b'1'),
+(35, 55, 'Amoxicilina 500mg', 'Genfar', '2022-10-20', b'1'),
+(37, 22, 'Amoxicilina 500mg', 'Genfar', '2022-10-19', b'0');
 
 -- --------------------------------------------------------
 
@@ -70,7 +72,8 @@ INSERT INTO `entradas` (`index_id`, `fecha_entrada`, `proveedor`, `ref_producto`
 (23, '2022-09-25', 'Prueba 5', 14, NULL),
 (39, '2022-10-03', 'JSJS', 29, NULL),
 (40, '2022-10-03', 'Copidrogas', 32, NULL),
-(41, '2022-10-03', 'Mi Proveedor 1', 34, NULL);
+(41, '2022-10-03', 'Mi Proveedor 1', 34, NULL),
+(42, '2022-10-03', 'Proveedor1', 35, NULL);
 
 -- --------------------------------------------------------
 
@@ -91,10 +94,11 @@ CREATE TABLE `existencias` (
 --
 
 INSERT INTO `existencias` (`index_id`, `cantidad`, `fecha_ven`, `laboratorio`, `nombre_prod`) VALUES
-(166, 10, '2022-01-02', 'MK', 'Amoxicilina 500mg'),
-(167, 4, '2023-05-25', 'Genfar', 'Losartan'),
-(168, 2, '2022-10-12', 'Genfar', 'Neurobion 500mg'),
-(169, 52, '2022-10-20', 'MK', 'Vitamina C');
+(189, 10, '2022-01-02', 'MK', 'Amoxicilina 500mg'),
+(190, 4, '2023-05-25', 'Genfar', 'Losartan'),
+(191, 2, '2022-10-12', 'Genfar', 'Neurobion 500mg'),
+(192, 52, '2022-10-20', 'MK', 'Vitamina C'),
+(193, 33, '2022-10-20', 'Genfar', 'Amoxicilina 500mg');
 
 -- --------------------------------------------------------
 
@@ -125,13 +129,15 @@ CREATE TABLE `salidas` (
   `fecha_salida` date NOT NULL,
   `proveedor` varchar(60) NOT NULL,
   `ref_producto` int(11) NOT NULL,
-  `detalle_completo` tinyblob DEFAULT NULL,
-  `cantidad` int(11) NOT NULL,
-  `cliente` varchar(255) NOT NULL,
-  `detalle` varchar(255) NOT NULL,
-  `fecha_sal` date NOT NULL,
-  `vent_devpro` bit(1) NOT NULL
+  `detalle_completo` tinyblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `salidas`
+--
+
+INSERT INTO `salidas` (`index_id`, `fecha_salida`, `proveedor`, `ref_producto`, `detalle_completo`) VALUES
+(38, '2022-10-03', 'Pedro Velasquez', 37, NULL);
 
 -- --------------------------------------------------------
 
@@ -228,19 +234,19 @@ ALTER TABLE `usuarios_roles`
 -- AUTO_INCREMENT de la tabla `detalles`
 --
 ALTER TABLE `detalles`
-  MODIFY `index_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `index_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `entradas`
 --
 ALTER TABLE `entradas`
-  MODIFY `index_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `index_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `existencias`
 --
 ALTER TABLE `existencias`
-  MODIFY `index_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+  MODIFY `index_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -252,7 +258,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `salidas`
 --
 ALTER TABLE `salidas`
-  MODIFY `index_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `index_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

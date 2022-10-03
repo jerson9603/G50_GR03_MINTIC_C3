@@ -3,10 +3,16 @@ package com.misiontic2022.inventario.serviceImpl;
 import com.misiontic2022.inventario.repository.SalidaRepository;
 import com.misiontic2022.inventario.service.SalidaService;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.misiontic2022.inventario.domain.Salida;
 
+@Service
 public class SalidaServiceImpl implements SalidaService{
     
+    @Autowired
     private SalidaRepository repository;
 
     public List<Salida> findAll() {
