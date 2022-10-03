@@ -28,5 +28,8 @@ public class ExistenciaServiceImpl implements ExistenciaService {
         return this.repositorio.getReferenceById(id);
     }
     
+    public void deleteAll() {
+		this.repositorio.deleteAll();
+	}
 }
 

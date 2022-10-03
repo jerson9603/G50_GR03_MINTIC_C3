@@ -11,5 +11,7 @@ public interface ExistenciaService {
     public List<Existencia> findAll();
 
     public Existencia getById(Long id);
+
+    public void deleteAll();
     
 }
