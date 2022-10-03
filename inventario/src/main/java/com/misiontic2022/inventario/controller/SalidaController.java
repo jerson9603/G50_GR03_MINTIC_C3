@@ -30,7 +30,6 @@ import com.misiontic2022.inventario.service.SalidaService;
 
 
 @Controller
-@RequestMapping("/salida")
 public class SalidaController {
     
     // You can use @Autowired annotation on properties to get rid of the setter methods
@@ -39,7 +38,7 @@ public class SalidaController {
     @Autowired
     private DetalleService detalleService;
 
-    @GetMapping("/list")
+    @GetMapping("/salida/list")
     public String list (Model model) {
 
         List<Salida> salidas = this.salidaService.findAll();
@@ -59,7 +58,7 @@ public class SalidaController {
         return "salidas";
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping("/salida/delete")
     public String delete (
         @RequestParam(value="indexId",required=true)
         Long indexId
@@ -74,7 +73,7 @@ public class SalidaController {
 
 
     
-    @RequestMapping("/edit/{id}")
+    @RequestMapping("/salida/edit/{id}")
     public String edit (
         @PathVariable(name="id")
         Long indexId,
@@ -94,7 +93,7 @@ public class SalidaController {
     }
     
 
-    @PostMapping(value="/update")
+    @PostMapping(value="/salida/update")
     public String update (
         @ModelAttribute("SALIDAS")
         Salida salida,
@@ -109,8 +108,8 @@ public class SalidaController {
     }
     
 
-    
-    @RequestMapping("/new")
+    // toDo: Que hace el objeto ModelAndView?
+    @RequestMapping("/salida/new")
     public ModelAndView newUser() {
         Salida salida = new Salida();
         Detalle detalle = new Detalle();
@@ -130,7 +129,7 @@ public class SalidaController {
     }
 
     
-    @PostMapping(value="/save")
+    @PostMapping(value="/salida/save")
     public String save(
         @ModelAttribute(name="SALIDAS")
         Salida salida,
@@ -145,7 +144,8 @@ public class SalidaController {
         Date date = new Date();
         salida.setFechaSal(date);
 
-        
+        // toDo: Esto debe ser "false" en salidas!!
+        // toDO: Por que esto NO FUNCIONA??
         detalle.setEnt_Sal(false);
         
         
